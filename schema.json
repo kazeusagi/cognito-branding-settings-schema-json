@@ -180,7 +180,7 @@
           "properties": {
             "enabledTypes": {
               "type": "array",
-              "items": { "type": "string" }
+              "items": { "type": "string", "enum": ["ICO", "SVG"] }
             }
           }
         },
