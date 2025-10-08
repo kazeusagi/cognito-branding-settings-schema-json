@@ -1,0 +1,490 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Cognito Branding Settings",
+  "type": "object",
+  "properties": {
+    "categories": {
+      "type": "object",
+      "properties": {
+        "auth": {
+          "type": "object",
+          "properties": {
+            "authMethodOrder": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "display": { "type": "string" },
+                    "type": { "type": "string" }
+                  }
+                }
+              }
+            },
+            "federation": {
+              "type": "object",
+              "properties": {
+                "interfaceStyle": { "type": "string" },
+                "order": { "type": "array" }
+              }
+            }
+          }
+        },
+        "form": {
+          "type": "object",
+          "properties": {
+            "displayGraphics": { "type": "boolean" },
+            "instructions": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean" }
+              }
+            },
+            "languageSelector": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean" }
+              }
+            },
+            "location": {
+              "type": "object",
+              "properties": {
+                "horizontal": { "type": "string" },
+                "vertical": { "type": "string" }
+              }
+            },
+            "sessionTimerDisplay": { "type": "string" }
+          }
+        },
+        "global": {
+          "type": "object",
+          "properties": {
+            "colorSchemeMode": { "type": "string" },
+            "pageFooter": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean" }
+              }
+            },
+            "pageHeader": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean" }
+              }
+            },
+            "spacingDensity": { "type": "string" }
+          }
+        },
+        "signUp": {
+          "type": "object",
+          "properties": {
+            "acceptanceElements": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "enforcement": { "type": "string" },
+                  "textKey": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "componentClasses": {
+      "type": "object",
+      "properties": {
+        "buttons": {
+          "type": "object",
+          "properties": {
+            "borderRadius": { "type": "number" }
+          }
+        },
+        "divider": {
+          "$ref": "#/definitions/themeMode"
+        },
+        "dropDown": {
+          "type": "object",
+          "properties": {
+            "borderRadius": { "type": "number" },
+            "darkMode": { "$ref": "#/definitions/dropDownMode" },
+            "lightMode": { "$ref": "#/definitions/dropDownMode" }
+          }
+        },
+        "focusState": {
+          "$ref": "#/definitions/themeMode"
+        },
+        "idpButtons": {
+          "type": "object",
+          "properties": {
+            "icons": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean" }
+              }
+            }
+          }
+        },
+        "input": {
+          "type": "object",
+          "properties": {
+            "borderRadius": { "type": "number" },
+            "darkMode": { "$ref": "#/definitions/inputMode" },
+            "lightMode": { "$ref": "#/definitions/inputMode" }
+          }
+        },
+        "inputDescription": {
+          "$ref": "#/definitions/themeMode"
+        },
+        "inputLabel": {
+          "$ref": "#/definitions/themeMode"
+        },
+        "link": {
+          "type": "object",
+          "properties": {
+            "darkMode": { "$ref": "#/definitions/interactiveState" },
+            "lightMode": { "$ref": "#/definitions/interactiveState" }
+          }
+        },
+        "optionControls": {
+          "type": "object",
+          "properties": {
+            "darkMode": { "$ref": "#/definitions/optionControlMode" },
+            "lightMode": { "$ref": "#/definitions/optionControlMode" }
+          }
+        },
+        "statusIndicator": {
+          "type": "object",
+          "properties": {
+            "darkMode": { "$ref": "#/definitions/statusMode" },
+            "lightMode": { "$ref": "#/definitions/statusMode" }
+          }
+        }
+      }
+    },
+    "components": {
+      "type": "object",
+      "properties": {
+        "alert": {
+          "type": "object",
+          "properties": {
+            "borderRadius": { "type": "number" },
+            "darkMode": { "$ref": "#/definitions/alertMode" },
+            "lightMode": { "$ref": "#/definitions/alertMode" }
+          }
+        },
+        "favicon": {
+          "type": "object",
+          "properties": {
+            "enabledTypes": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "form": {
+          "type": "object",
+          "properties": {
+            "backgroundImage": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean" }
+              }
+            },
+            "borderRadius": { "type": "number" },
+            "darkMode": { "$ref": "#/definitions/formMode" },
+            "lightMode": { "$ref": "#/definitions/formMode" },
+            "logo": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "formInclusion": { "type": "string" },
+                "location": { "type": "string" },
+                "position": { "type": "string" }
+              }
+            }
+          }
+        },
+        "idpButton": {
+          "type": "object",
+          "properties": {
+            "custom": { "type": "object" },
+            "standard": {
+              "type": "object",
+              "properties": {
+                "darkMode": { "$ref": "#/definitions/buttonStates" },
+                "lightMode": { "$ref": "#/definitions/buttonStates" }
+              }
+            }
+          }
+        },
+        "pageBackground": {
+          "type": "object",
+          "properties": {
+            "darkMode": {
+              "type": "object",
+              "properties": {
+                "color": { "type": "string" }
+              }
+            },
+            "image": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean" }
+              }
+            },
+            "lightMode": {
+              "type": "object",
+              "properties": {
+                "color": { "type": "string" }
+              }
+            }
+          }
+        },
+        "pageFooter": {
+          "$ref": "#/definitions/pageSection"
+        },
+        "pageHeader": {
+          "$ref": "#/definitions/pageSection"
+        },
+        "pageText": {
+          "type": "object",
+          "properties": {
+            "darkMode": { "$ref": "#/definitions/textColors" },
+            "lightMode": { "$ref": "#/definitions/textColors" }
+          }
+        },
+        "phoneNumberSelector": {
+          "type": "object",
+          "properties": {
+            "displayType": { "type": "string" }
+          }
+        },
+        "primaryButton": {
+          "type": "object",
+          "properties": {
+            "darkMode": { "$ref": "#/definitions/buttonStates" },
+            "lightMode": { "$ref": "#/definitions/buttonStates" }
+          }
+        },
+        "secondaryButton": {
+          "type": "object",
+          "properties": {
+            "darkMode": { "$ref": "#/definitions/buttonStates" },
+            "lightMode": { "$ref": "#/definitions/buttonStates" }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "themeMode": {
+      "type": "object",
+      "properties": {
+        "darkMode": {
+          "type": "object",
+          "patternProperties": {
+            ".*Color$": { "type": "string" }
+          }
+        },
+        "lightMode": {
+          "type": "object",
+          "patternProperties": {
+            ".*Color$": { "type": "string" }
+          }
+        }
+      }
+    },
+    "dropDownMode": {
+      "type": "object",
+      "properties": {
+        "defaults": {
+          "type": "object",
+          "patternProperties": {
+            ".*": { "type": "string" }
+          }
+        },
+        "hover": {
+          "type": "object",
+          "patternProperties": {
+            ".*": { "type": "string" }
+          }
+        },
+        "match": {
+          "type": "object",
+          "patternProperties": {
+            ".*": { "type": "string" }
+          }
+        }
+      }
+    },
+    "inputMode": {
+      "type": "object",
+      "properties": {
+        "defaults": {
+          "type": "object",
+          "patternProperties": {
+            ".*Color$": { "type": "string" }
+          }
+        },
+        "placeholderColor": { "type": "string" }
+      }
+    },
+    "interactiveState": {
+      "type": "object",
+      "properties": {
+        "defaults": {
+          "type": "object",
+          "properties": {
+            "textColor": { "type": "string" }
+          }
+        },
+        "hover": {
+          "type": "object",
+          "properties": {
+            "textColor": { "type": "string" }
+          }
+        }
+      }
+    },
+    "optionControlMode": {
+      "type": "object",
+      "properties": {
+        "defaults": {
+          "type": "object",
+          "patternProperties": {
+            ".*Color$": { "type": "string" }
+          }
+        },
+        "selected": {
+          "type": "object",
+          "patternProperties": {
+            ".*Color$": { "type": "string" }
+          }
+        }
+      }
+    },
+    "statusMode": {
+      "type": "object",
+      "properties": {
+        "error": { "$ref": "#/definitions/statusState" },
+        "pending": {
+          "type": "object",
+          "properties": {
+            "indicatorColor": { "type": "string" }
+          }
+        },
+        "success": { "$ref": "#/definitions/statusState" },
+        "warning": { "$ref": "#/definitions/statusState" }
+      }
+    },
+    "statusState": {
+      "type": "object",
+      "properties": {
+        "backgroundColor": { "type": "string" },
+        "borderColor": { "type": "string" },
+        "indicatorColor": { "type": "string" }
+      }
+    },
+    "alertMode": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "type": "string" },
+            "borderColor": { "type": "string" }
+          }
+        }
+      }
+    },
+    "formMode": {
+      "type": "object",
+      "properties": {
+        "backgroundColor": { "type": "string" },
+        "borderColor": { "type": "string" }
+      }
+    },
+    "buttonStates": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "object",
+          "patternProperties": {
+            ".*Color$": { "type": "string" }
+          }
+        },
+        "defaults": {
+          "type": "object",
+          "patternProperties": {
+            ".*Color$": { "type": "string" }
+          }
+        },
+        "disabled": {
+          "type": "object",
+          "patternProperties": {
+            ".*Color$": { "type": "string" }
+          }
+        },
+        "hover": {
+          "type": "object",
+          "patternProperties": {
+            ".*Color$": { "type": "string" }
+          }
+        }
+      }
+    },
+    "pageSection": {
+      "type": "object",
+      "properties": {
+        "backgroundImage": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" }
+          }
+        },
+        "darkMode": {
+          "type": "object",
+          "properties": {
+            "background": {
+              "type": "object",
+              "properties": {
+                "color": { "type": "string" }
+              }
+            },
+            "borderColor": { "type": "string" }
+          }
+        },
+        "lightMode": {
+          "type": "object",
+          "properties": {
+            "background": {
+              "type": "object",
+              "properties": {
+                "color": { "type": "string" }
+              }
+            },
+            "borderColor": { "type": "string" }
+          }
+        },
+        "logo": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "location": { "type": "string" }
+          }
+        }
+      }
+    },
+    "textColors": {
+      "type": "object",
+      "properties": {
+        "bodyColor": { "type": "string" },
+        "descriptionColor": { "type": "string" },
+        "headingColor": { "type": "string" }
+      }
+    }
+  }
+}
