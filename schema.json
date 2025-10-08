@@ -200,9 +200,9 @@
               "type": "object",
               "properties": {
                 "enabled": { "type": "boolean" },
-                "formInclusion": { "type": "string" },
-                "location": { "type": "string" },
-                "position": { "type": "string" }
+                "formInclusion": { "type": "string", "enum": ["IN", "OUT"] },
+                "location": { "type": "string", "enum": ["BOTTOM", "CENTER", "TOP"] },
+                "position": { "type": "string", "enum": ["BOTTOM", "CENTER", "TOP"] }
               }
             }
           }
