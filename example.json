@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/kazeusagi/cognito-branding-settings-schema-json/refs/heads/main/schema.json",
   "categories": {},
-  "componentClasses": {},
-  "components": {}
+  "components": {},
+  "componentClasses": {}
 }
