@@ -1,10 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Cognito Branding Settings",
   "type": "object",
+  "required": ["categories", "componentClasses", "components"],
   "properties": {
     "categories": {
       "type": "object",
+      "required": ["auth", "form", "global", "signUp"],
       "properties": {
         "auth": {
           "type": "object",
@@ -15,9 +16,16 @@
                 "type": "array",
                 "items": {
                   "type": "object",
+                  "required": ["display", "type"],
                   "properties": {
-                    "display": { "type": "string" },
-                    "type": { "type": "string" }
+                    "display": {
+                      "type": "string",
+                      "enum": ["BUTTON", "INPUT"]
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": ["FEDERATED", "USERNAME_PASSWORD"]
+                    }
                   }
                 }
               }
@@ -25,8 +33,14 @@
             "federation": {
               "type": "object",
               "properties": {
-                "interfaceStyle": { "type": "string" },
-                "order": { "type": "array" }
+                "interfaceStyle": {
+                  "type": "string",
+                  "enum": ["BUTTON_LIST"]
+                },
+                "order": {
+                  "type": "array",
+                  "items": {}
+                }
               }
             }
           }
@@ -50,17 +64,29 @@
             "location": {
               "type": "object",
               "properties": {
-                "horizontal": { "type": "string" },
-                "vertical": { "type": "string" }
+                "horizontal": {
+                  "type": "string",
+                  "enum": ["CENTER", "LEFT", "RIGHT"]
+                },
+                "vertical": {
+                  "type": "string",
+                  "enum": ["CENTER", "TOP", "BOTTOM"]
+                }
               }
             },
-            "sessionTimerDisplay": { "type": "string" }
+            "sessionTimerDisplay": {
+              "type": "string",
+              "enum": ["NONE", "VISIBLE"]
+            }
           }
         },
         "global": {
           "type": "object",
           "properties": {
-            "colorSchemeMode": { "type": "string" },
+            "colorSchemeMode": {
+              "type": "string",
+              "enum": ["LIGHT", "DARK", "AUTO"]
+            },
             "pageFooter": {
               "type": "object",
               "properties": {
@@ -73,7 +99,10 @@
                 "enabled": { "type": "boolean" }
               }
             },
-            "spacingDensity": { "type": "string" }
+            "spacingDensity": {
+              "type": "string",
+              "enum": ["REGULAR", "COMPACT", "SPACIOUS"]
+            }
           }
         },
         "signUp": {
@@ -84,7 +113,10 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "enforcement": { "type": "string" },
+                  "enforcement": {
+                    "type": "string",
+                    "enum": ["NONE", "REQUIRED", "OPTIONAL"]
+                  },
                   "textKey": { "type": "string" }
                 }
               }
@@ -103,7 +135,7 @@
           }
         },
         "divider": {
-          "$ref": "#/definitions/themeMode"
+          "$ref": "#/definitions/colorModeStyles"
         },
         "dropDown": {
           "type": "object",
@@ -114,7 +146,7 @@
           }
         },
         "focusState": {
-          "$ref": "#/definitions/themeMode"
+          "$ref": "#/definitions/colorModeStyles"
         },
         "idpButtons": {
           "type": "object",
@@ -136,23 +168,23 @@
           }
         },
         "inputDescription": {
-          "$ref": "#/definitions/themeMode"
+          "$ref": "#/definitions/textColorMode"
         },
         "inputLabel": {
-          "$ref": "#/definitions/themeMode"
+          "$ref": "#/definitions/textColorMode"
         },
         "link": {
           "type": "object",
           "properties": {
-            "darkMode": { "$ref": "#/definitions/interactiveState" },
-            "lightMode": { "$ref": "#/definitions/interactiveState" }
+            "darkMode": { "$ref": "#/definitions/linkMode" },
+            "lightMode": { "$ref": "#/definitions/linkMode" }
           }
         },
         "optionControls": {
           "type": "object",
           "properties": {
-            "darkMode": { "$ref": "#/definitions/optionControlMode" },
-            "lightMode": { "$ref": "#/definitions/optionControlMode" }
+            "darkMode": { "$ref": "#/definitions/optionMode" },
+            "lightMode": { "$ref": "#/definitions/optionMode" }
           }
         },
         "statusIndicator": {
@@ -171,8 +203,18 @@
           "type": "object",
           "properties": {
             "borderRadius": { "type": "number" },
-            "darkMode": { "$ref": "#/definitions/alertMode" },
-            "lightMode": { "$ref": "#/definitions/alertMode" }
+            "darkMode": {
+              "type": "object",
+              "properties": {
+                "error": { "$ref": "#/definitions/bgBorderColor" }
+              }
+            },
+            "lightMode": {
+              "type": "object",
+              "properties": {
+                "error": { "$ref": "#/definitions/bgBorderColor" }
+              }
+            }
           }
         },
         "favicon": {
@@ -180,7 +222,10 @@
           "properties": {
             "enabledTypes": {
               "type": "array",
-              "items": { "type": "string", "enum": ["ICO", "SVG"] }
+              "items": {
+                "type": "string",
+                "enum": ["ICO", "SVG", "PNG"]
+              }
             }
           }
         },
@@ -194,15 +239,24 @@
               }
             },
             "borderRadius": { "type": "number" },
-            "darkMode": { "$ref": "#/definitions/formMode" },
-            "lightMode": { "$ref": "#/definitions/formMode" },
+            "darkMode": { "$ref": "#/definitions/bgBorderColor" },
+            "lightMode": { "$ref": "#/definitions/bgBorderColor" },
             "logo": {
               "type": "object",
               "properties": {
                 "enabled": { "type": "boolean" },
-                "formInclusion": { "type": "string", "enum": ["IN", "OUT"] },
-                "location": { "type": "string", "enum": ["BOTTOM", "CENTER", "TOP"] },
-                "position": { "type": "string", "enum": ["BOTTOM", "CENTER", "TOP"] }
+                "formInclusion": {
+                  "type": "string",
+                  "enum": ["IN", "OUT"]
+                },
+                "location": {
+                  "type": "string",
+                  "enum": ["CENTER", "START", "END"]
+                },
+                "position": {
+                  "type": "string",
+                  "enum": ["TOP", "BOTTOM"]
+                }
               }
             }
           }
@@ -226,7 +280,7 @@
             "darkMode": {
               "type": "object",
               "properties": {
-                "color": { "type": "string" }
+                "color": { "$ref": "#/definitions/colorHex" }
               }
             },
             "image": {
@@ -238,17 +292,13 @@
             "lightMode": {
               "type": "object",
               "properties": {
-                "color": { "type": "string" }
+                "color": { "$ref": "#/definitions/colorHex" }
               }
             }
           }
         },
-        "pageFooter": {
-          "$ref": "#/definitions/pageSection"
-        },
-        "pageHeader": {
-          "$ref": "#/definitions/pageSection"
-        },
+        "pageFooter": { "$ref": "#/definitions/pageSection" },
+        "pageHeader": { "$ref": "#/definitions/pageSection" },
         "pageText": {
           "type": "object",
           "properties": {
@@ -259,14 +309,17 @@
         "phoneNumberSelector": {
           "type": "object",
           "properties": {
-            "displayType": { "type": "string" }
+            "displayType": {
+              "type": "string",
+              "enum": ["TEXT", "DROPDOWN"]
+            }
           }
         },
         "primaryButton": {
           "type": "object",
           "properties": {
-            "darkMode": { "$ref": "#/definitions/buttonStates" },
-            "lightMode": { "$ref": "#/definitions/buttonStates" }
+            "darkMode": { "$ref": "#/definitions/primaryButtonStates" },
+            "lightMode": { "$ref": "#/definitions/primaryButtonStates" }
           }
         },
         "secondaryButton": {
@@ -280,19 +333,30 @@
     }
   },
   "definitions": {
-    "themeMode": {
+    "colorHex": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{8}ff$"
+    },
+    "bgBorderColor": {
+      "type": "object",
+      "properties": {
+        "backgroundColor": { "$ref": "#/definitions/colorHex" },
+        "borderColor": { "$ref": "#/definitions/colorHex" }
+      }
+    },
+    "colorModeStyles": {
       "type": "object",
       "properties": {
         "darkMode": {
           "type": "object",
-          "patternProperties": {
-            ".*Color$": { "type": "string" }
+          "properties": {
+            "borderColor": { "$ref": "#/definitions/colorHex" }
           }
         },
         "lightMode": {
           "type": "object",
-          "patternProperties": {
-            ".*Color$": { "type": "string" }
+          "properties": {
+            "borderColor": { "$ref": "#/definitions/colorHex" }
           }
         }
       }
@@ -302,20 +366,23 @@
       "properties": {
         "defaults": {
           "type": "object",
-          "patternProperties": {
-            ".*": { "type": "string" }
+          "properties": {
+            "itemBackgroundColor": { "$ref": "#/definitions/colorHex" }
           }
         },
         "hover": {
           "type": "object",
-          "patternProperties": {
-            ".*": { "type": "string" }
+          "properties": {
+            "itemBackgroundColor": { "$ref": "#/definitions/colorHex" },
+            "itemBorderColor": { "$ref": "#/definitions/colorHex" },
+            "itemTextColor": { "$ref": "#/definitions/colorHex" }
           }
         },
         "match": {
           "type": "object",
-          "patternProperties": {
-            ".*": { "type": "string" }
+          "properties": {
+            "itemBackgroundColor": { "$ref": "#/definitions/colorHex" },
+            "itemTextColor": { "$ref": "#/definitions/colorHex" }
           }
         }
       }
@@ -325,43 +392,63 @@
       "properties": {
         "defaults": {
           "type": "object",
-          "patternProperties": {
-            ".*Color$": { "type": "string" }
+          "properties": {
+            "backgroundColor": { "$ref": "#/definitions/colorHex" },
+            "borderColor": { "$ref": "#/definitions/colorHex" }
           }
         },
-        "placeholderColor": { "type": "string" }
+        "placeholderColor": { "$ref": "#/definitions/colorHex" }
       }
     },
-    "interactiveState": {
+    "textColorMode": {
+      "type": "object",
+      "properties": {
+        "darkMode": {
+          "type": "object",
+          "properties": {
+            "textColor": { "$ref": "#/definitions/colorHex" }
+          }
+        },
+        "lightMode": {
+          "type": "object",
+          "properties": {
+            "textColor": { "$ref": "#/definitions/colorHex" }
+          }
+        }
+      }
+    },
+    "linkMode": {
       "type": "object",
       "properties": {
         "defaults": {
           "type": "object",
           "properties": {
-            "textColor": { "type": "string" }
+            "textColor": { "$ref": "#/definitions/colorHex" }
           }
         },
         "hover": {
           "type": "object",
           "properties": {
-            "textColor": { "type": "string" }
+            "textColor": { "$ref": "#/definitions/colorHex" }
           }
         }
       }
     },
-    "optionControlMode": {
+    "optionMode": {
       "type": "object",
       "properties": {
         "defaults": {
           "type": "object",
-          "patternProperties": {
-            ".*Color$": { "type": "string" }
+          "properties": {
+            "backgroundColor": { "$ref": "#/definitions/colorHex" },
+            "borderColor": { "$ref": "#/definitions/colorHex" }
           }
         },
         "selected": {
           "type": "object",
-          "patternProperties": {
-            ".*Color$": { "type": "string" }
+          "properties": {
+            "backgroundColor": { "$ref": "#/definitions/colorHex" },
+            "foregroundColor": { "$ref": "#/definitions/colorHex" }
           }
         }
       }
@@ -369,42 +456,23 @@
     "statusMode": {
       "type": "object",
       "properties": {
-        "error": { "$ref": "#/definitions/statusState" },
+        "error": { "$ref": "#/definitions/statusItem" },
         "pending": {
           "type": "object",
           "properties": {
-            "indicatorColor": { "type": "string" }
+            "indicatorColor": { "$ref": "#/definitions/colorHex" }
           }
         },
-        "success": { "$ref": "#/definitions/statusState" },
-        "warning": { "$ref": "#/definitions/statusState" }
+        "success": { "$ref": "#/definitions/statusItem" },
+        "warning": { "$ref": "#/definitions/statusItem" }
       }
     },
-    "statusState": {
+    "statusItem": {
       "type": "object",
       "properties": {
-        "backgroundColor": { "type": "string" },
-        "borderColor": { "type": "string" },
-        "indicatorColor": { "type": "string" }
-      }
-    },
-    "alertMode": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "object",
-          "properties": {
-            "backgroundColor": { "type": "string" },
-            "borderColor": { "type": "string" }
-          }
-        }
-      }
-    },
-    "formMode": {
-      "type": "object",
-      "properties": {
-        "backgroundColor": { "type": "string" },
-        "borderColor": { "type": "string" }
+        "backgroundColor": { "$ref": "#/definitions/colorHex" },
+        "borderColor": { "$ref": "#/definitions/colorHex" },
+        "indicatorColor": { "$ref": "#/definitions/colorHex" }
       }
     },
     "buttonStates": {
@@ -412,26 +480,59 @@
       "properties": {
         "active": {
           "type": "object",
-          "patternProperties": {
-            ".*Color$": { "type": "string" }
+          "properties": {
+            "backgroundColor": { "$ref": "#/definitions/colorHex" },
+            "borderColor": { "$ref": "#/definitions/colorHex" },
+            "textColor": { "$ref": "#/definitions/colorHex" }
           }
         },
         "defaults": {
           "type": "object",
-          "patternProperties": {
-            ".*Color$": { "type": "string" }
-          }
-        },
-        "disabled": {
-          "type": "object",
-          "patternProperties": {
-            ".*Color$": { "type": "string" }
+          "properties": {
+            "backgroundColor": { "$ref": "#/definitions/colorHex" },
+            "borderColor": { "$ref": "#/definitions/colorHex" },
+            "textColor": { "$ref": "#/definitions/colorHex" }
           }
         },
         "hover": {
           "type": "object",
-          "patternProperties": {
-            ".*Color$": { "type": "string" }
+          "properties": {
+            "backgroundColor": { "$ref": "#/definitions/colorHex" },
+            "borderColor": { "$ref": "#/definitions/colorHex" },
+            "textColor": { "$ref": "#/definitions/colorHex" }
+          }
+        }
+      }
+    },
+    "primaryButtonStates": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "$ref": "#/definitions/colorHex" },
+            "textColor": { "$ref": "#/definitions/colorHex" }
+          }
+        },
+        "defaults": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "$ref": "#/definitions/colorHex" },
+            "textColor": { "$ref": "#/definitions/colorHex" }
+          }
+        },
+        "disabled": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "$ref": "#/definitions/colorHex" },
+            "borderColor": { "$ref": "#/definitions/colorHex" }
+          }
+        },
+        "hover": {
+          "type": "object",
+          "properties": {
+            "backgroundColor": { "$ref": "#/definitions/colorHex" },
+            "textColor": { "$ref": "#/definitions/colorHex" }
           }
         }
       }
@@ -451,10 +552,10 @@
             "background": {
               "type": "object",
               "properties": {
-                "color": { "type": "string" }
+                "color": { "$ref": "#/definitions/colorHex" }
               }
             },
-            "borderColor": { "type": "string" }
+            "borderColor": { "$ref": "#/definitions/colorHex" }
           }
         },
         "lightMode": {
@@ -463,17 +564,20 @@
             "background": {
               "type": "object",
               "properties": {
-                "color": { "type": "string" }
+                "color": { "$ref": "#/definitions/colorHex" }
               }
             },
-            "borderColor": { "type": "string" }
+            "borderColor": { "$ref": "#/definitions/colorHex" }
           }
         },
         "logo": {
           "type": "object",
           "properties": {
             "enabled": { "type": "boolean" },
-            "location": { "type": "string" }
+            "location": {
+              "type": "string",
+              "enum": ["START", "CENTER", "END"]
+            }
           }
         }
       }
@@ -481,9 +585,9 @@
     "textColors": {
       "type": "object",
       "properties": {
-        "bodyColor": { "type": "string" },
-        "descriptionColor": { "type": "string" },
-        "headingColor": { "type": "string" }
+        "bodyColor": { "$ref": "#/definitions/colorHex" },
+        "descriptionColor": { "$ref": "#/definitions/colorHex" },
+        "headingColor": { "$ref": "#/definitions/colorHex" }
       }
     }
   }
